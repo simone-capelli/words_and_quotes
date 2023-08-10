@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-//import BookMeaningSection from '@/components/words/BookMeaningSection';
+import BookMeaningSection from '@/components/words/BookMeaningSection';
 import InputWordSection from '@/components/words/InputWordSection';
 
 const Home = () => {
@@ -28,7 +28,7 @@ const Home = () => {
 
       <InputWordSection />
 
-      {/* <BookMeaningSection /> */}
+      <BookMeaningSection />
     </section>
   );
 };
