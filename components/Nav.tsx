@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const Nav = () => {
   return (
-    <nav className="flex justify-between items-center w-full pt-2 pb-0 px-[18px]">
+    <nav className="flex justify-between items-center w-full pt-2 pb-0">
       <Image
         src="/assets/icons/values.png"
         alt="Life Values"

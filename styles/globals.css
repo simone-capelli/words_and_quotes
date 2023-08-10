@@ -16,8 +16,10 @@
   @apply text-black text-center text-base not-italic font-normal leading-[normal];
   font-family: Outfit;
 }
+.btn {
+  @apply flex w-[110px] h-[37px] justify-center items-center gap-2.5 shrink-0 border px-4 py-0 rounded-[5px] border-solid border-[rgba(0,0,0,0.31)];
+}
 .btn-save {
-  @apply flex w-[54px] h-[37px] justify-center items-center shrink-0 border text-white text-base not-italic font-medium leading-[normal] px-4 py-0 rounded-[5px] border-solid border-[rgba(0,0,0,0.31)];
   background: rgba(0, 0, 0, 0.78);
   font-family: Inter;
 }

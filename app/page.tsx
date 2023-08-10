@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-// import BookMeaningSection from '@/components/words/BookMeaningSection';
-// import InputWordSection from '@/components/words/InputWordSection';
+//import BookMeaningSection from '@/components/words/BookMeaningSection';
+import InputWordSection from '@/components/words/InputWordSection';
 
 const Home = () => {
   return (
@@ -26,7 +26,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* <InputWordSection /> */}
+      <InputWordSection />
 
       {/* <BookMeaningSection /> */}
     </section>

@@ -2,8 +2,8 @@ import Nav from '@components/Nav';
 import '@styles/globals.css';
 
 export const metadata = {
-  title: 'New App',
-  description: 'Description of new app',
+  title: 'WordsAndQuotes',
+  description: 'A useful and funny system to store words and quotes daily',
 };
 
 const RootLayout = ({ children }: any) => {
