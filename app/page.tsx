@@ -5,7 +5,7 @@ import InputWordSection from '@/components/words/InputWordSection';
 
 const Home = () => {
   return (
-    <section className="w-full flex-center flex-col">
+    <section className="w-full flex-center flex-col pt-12">
       <Image
         className="pt-16"
         src="/assets/images/word_big-letter-colored.png"
@@ -29,6 +29,11 @@ const Home = () => {
       <InputWordSection />
 
       <BookMeaningSection />
+
+      <br />
+      <br />
+      <br />
+      <br />
     </section>
   );
 };

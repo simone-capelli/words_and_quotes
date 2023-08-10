@@ -11,7 +11,7 @@ const BottomBar = () => {
           height={30}
         />
         <Image
-          src="/assets/images/word_letter-white.png"
+          src="/assets/images/word_medium-letter_white.png"
           alt="Word_letter white"
           width={35}
           height={35}
