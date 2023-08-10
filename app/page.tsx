@@ -1,19 +1,34 @@
 import React from 'react';
+import Image from 'next/image';
+// import BookMeaningSection from '@/components/words/BookMeaningSection';
+// import InputWordSection from '@/components/words/InputWordSection';
 
 const Home = () => {
   return (
     <section className="w-full flex-center flex-col">
-      <h1 className="head_text text-center">
-        Welcome to your
-        <br className="max-md:hidden" />
-        <span className="blue_gradient text-center"> Next.js TS template</span>
-      </h1>
-      <p className="desc text-center">
-        This is a Next.js template built with TypeScript and TailwindCSS, which
-        includes some basics styles in the globals.css file
-      </p>
+      <Image
+        className="pt-16"
+        src="/assets/images/word_big-letter-colored.png"
+        alt="Word Letter"
+        width={117}
+        height={117}
+      />
 
-      {/* Feed */}
+      <div className="text-medium flex flex-row gap-1 pt-10">
+        <p>Have</p>
+        <p className="text-[#268C41]">you</p>
+        <p>found</p>
+        <p className="text-[#268C41]">new</p>
+        <p>words</p>
+        <div className="text-[#268C41] flex flex-row">
+          today
+          <p className="text-black">?</p>
+        </div>
+      </div>
+
+      {/* <InputWordSection /> */}
+
+      {/* <BookMeaningSection /> */}
     </section>
   );
 };
