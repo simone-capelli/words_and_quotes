@@ -12,6 +12,8 @@
   @apply flex flex-row text-black text-center text-[32px] not-italic font-normal leading-[normal] capitalize;
   font-family: Outfit;
 }
+
+/* Text and Buttons*/
 .text-medium {
   @apply text-black text-center text-base not-italic font-normal leading-[normal];
   font-family: Outfit;
@@ -22,6 +24,16 @@
 .btn-save {
   background: rgba(0, 0, 0, 0.78);
   font-family: Inter;
+}
+
+/* Bottom bar */
+.bottombar {
+  @apply fixed bottom-0 z-10 w-full p-4 backdrop-blur-lg;
+  background: rgba(16, 16, 18, 0.6);
+}
+
+.bottombar_container {
+  @apply flex items-center justify-between mx-4 gap-3 md:gap-5;
 }
 
 /* Containers */
