@@ -5,17 +5,44 @@ import Image from 'next/image';
 import { findMostMatchedString } from '@utils';
 
 const InputWordSection = () => {
-  const [isLearned, setIsLearned] = useState(true);
-  const [isSaved, setIsSaved] = useState(false);
+  const [isLearned, setIsLearned] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const [wordInput, setWordInput] = useState('');
   const [tagInput, setTagInput] = useState('');
   const [matchedTag, setMatchedTag] = useState('');
 
-  const saveWord = () => {
-    /* voglio creare un sistema per il quale quando salvo una parola,
-    cambio lo stato a true di isSaved, poi parte una animazione, e infine,
-    dopo 3 secondi, torna come prima e resetta gli input. */
+  const saveWord = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (!wordInput || !tagInput) {
+      return;
+    }
+    setSubmitting(true);
+
+    try {
+      console.log(wordInput, tagInput, isLearned);
+
+      const response = fetch('/api/words/new', {
+        method: 'POST',
+        body: JSON.stringify({
+          word: wordInput,
+          tag: tagInput,
+          isLearned: isLearned,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setTimeout(() => {
+        setSubmitting(false);
+        // reset everything
+        setIsLearned(false);
+        setWordInput('');
+        setTagInput('');
+        setMatchedTag('');
+      }, 2000);
+    }
   };
 
   const handleWordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,17 +50,14 @@ const InputWordSection = () => {
     setWordInput(value.trim());
   };
 
-  const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTagInputChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const value = e.target.value;
     setTagInput(value);
 
-    setMatchedTag(findMostMatchedString(value));
+    setMatchedTag(await findMostMatchedString(value));
   };
-
-  /* const validateSingleWord = (value: string) => {
-    const regex = /^\w+$/;
-    return regex.test(value); // true if valid
-  }; */
 
   return (
     <div className="flex flex-col gap-4 pt-6">
@@ -125,9 +149,19 @@ const InputWordSection = () => {
         </button>
         <button
           className="btn btn-save text-white font-medium"
+          type="submit"
           onClick={saveWord}
         >
-          Save
+          {submitting ? (
+            <Image
+              src="/assets/icons/save_tick-white.png"
+              alt="Saved"
+              width={16}
+              height={16}
+            />
+          ) : (
+            'Save'
+          )}
         </button>
       </div>
     </div>

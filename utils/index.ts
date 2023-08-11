@@ -1,7 +1,10 @@
-export function findMostMatchedString(inputString: string) {
+export async function findMostMatchedString(inputString: string) {
   if (inputString === '') return '';
-  const strings = ['web', 'web-development', 'design', 'philsophy', 'general'];
-  for (const string of strings) {
+
+  const response = await fetch('/api/words/tags');
+  const tags = await response.json();
+
+  for (const string of tags) {
     if (string.includes(inputString)) {
       return string;
     }
