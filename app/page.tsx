@@ -8,7 +8,7 @@ const Home = () => {
     <section className="w-full flex-center flex-col pt-12">
       <Image
         className="pt-16"
-        src="/assets/images/word_big-letter-colored.png"
+        src="/assets/images/word_big-letter_colored.png"
         alt="Word Letter"
         width={117}
         height={117}
