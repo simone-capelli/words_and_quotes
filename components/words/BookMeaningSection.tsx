@@ -18,7 +18,6 @@ const BookMeaningSection = () => {
       </div>
 
       <Image
-        className="shrink-0"
         src="/assets/images/meaning_book.png"
         alt="Meaning Book"
         width={79}

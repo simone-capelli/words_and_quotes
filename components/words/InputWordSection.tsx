@@ -41,7 +41,7 @@ const InputWordSection = () => {
         setWordInput('');
         setTagInput('');
         setMatchedTag('');
-      }, 2000);
+      }, 1500);
     }
   };
 
