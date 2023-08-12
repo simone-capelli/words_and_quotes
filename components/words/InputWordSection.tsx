@@ -11,6 +11,7 @@ const InputWordSection = () => {
   const [wordInput, setWordInput] = useState('');
   const [tagInput, setTagInput] = useState('');
   const [matchedTag, setMatchedTag] = useState('');
+  const [meaningInput, setMeaningInput] = useState('');
 
   const saveWord = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const InputWordSection = () => {
     setSubmitting(true);
 
     try {
-      console.log(wordInput, tagInput, isLearned);
+      //console.log(wordInput, tagInput, isLearned);
 
       const response = fetch('/api/words/new', {
         method: 'POST',
@@ -29,6 +30,7 @@ const InputWordSection = () => {
           word: wordInput,
           tag: tagInput,
           isLearned: isLearned,
+          meaning: meaningInput.trim(),
         }),
       });
     } catch (error) {
@@ -41,6 +43,7 @@ const InputWordSection = () => {
         setWordInput('');
         setTagInput('');
         setMatchedTag('');
+        setMeaningInput('');
       }, 1500);
     }
   };
@@ -57,6 +60,11 @@ const InputWordSection = () => {
     setTagInput(value);
 
     setMatchedTag(await findMostMatchedString(value));
+  };
+
+  const handleMeaningInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setMeaningInput(value);
   };
 
   return (
@@ -91,6 +99,28 @@ const InputWordSection = () => {
           onChange={handleWordInputChange}
         />
       </div>
+
+      {/* Meaning Section */}
+      {isLearned && (
+        <div className="inline-flex justify-center items-center gap-2 pl-[9px] pr-[11.12px] pt-[7px] pb-2">
+          <Image
+            className="mx-1"
+            src="/assets/icons/meaningInput.png"
+            alt="Light Bulb"
+            width={28}
+            height={28}
+          />
+
+          <input
+            className="p-2 rounded-lg border-2 border-solid border-[#D9D9D9]"
+            type="text"
+            maxLength={500}
+            value={meaningInput}
+            placeholder="Meaning"
+            onChange={handleMeaningInputChange}
+          />
+        </div>
+      )}
 
       {/* Tag Section */}
       <div className="flex flex-col">
