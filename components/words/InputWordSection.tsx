@@ -29,7 +29,7 @@ const InputWordSection = () => {
       const response = fetch('/api/words/new', {
         method: 'POST',
         body: JSON.stringify({
-          word: wordInput,
+          word: wordInput.toLowerCase(),
           tag: tagInput,
           isLearned: isLearned,
           meaning: meaningInput.trim(),
@@ -93,7 +93,7 @@ const InputWordSection = () => {
             onClick={() => setIsLearned(false)}
             className="mx-1"
             src="/assets/icons/done_tick-green.png"
-            alt="Question Mark"
+            alt="Word Learned"
             width={28}
             height={28}
           />
@@ -101,7 +101,7 @@ const InputWordSection = () => {
           <Image
             onClick={() => setIsLearned(true)}
             src="/assets/icons/question-mark.png"
-            alt="Learn"
+            alt="Word To Learn"
             width={36}
             height={36}
           />
