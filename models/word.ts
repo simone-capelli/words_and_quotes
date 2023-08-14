@@ -12,7 +12,7 @@ const WordSchema = new Schema(
     },
     createdTime: {
       type: Date,
-      default: Date.now,
+      default: Date.now() + 2 * 60 * 60 * 1000,
     },
     isLearned: {
       type: Boolean,
