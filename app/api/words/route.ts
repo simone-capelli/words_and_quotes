@@ -6,7 +6,7 @@ export const GET = async () => {
     await connectToDB();
 
     const headers = new Headers();
-    headers.append('Cache-Control', 'no-store');
+    headers.append('Expires', new Date().toUTCString());
 
     const words = await Word.find({}); // returns all words
 
