@@ -1,7 +1,7 @@
 import { connectToDB } from '@utils/database';
-import { Word } from '@models/word';
+import Word from '@models/word';
 
-export const GET = async (request) => {
+export const GET = async () => {
   try {
     await connectToDB();
 

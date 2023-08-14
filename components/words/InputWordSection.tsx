@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { findMostMatchedString } from '@utils';
+import { findMostMatchedString, suggestedMeaningByAI } from '@utils/functions';
+import { PuffLoader } from 'react-spinners';
 
 const InputWordSection = () => {
   const [isLearned, setIsLearned] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [meaningSubmitting, setMeaningSubmitting] = useState(false);
 
   const [wordInput, setWordInput] = useState('');
   const [tagInput, setTagInput] = useState('');
@@ -16,7 +18,7 @@ const InputWordSection = () => {
   const saveWord = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    if (!wordInput || !tagInput) {
+    if (!wordInput || !tagInput || meaningSubmitting) {
       return;
     }
     setSubmitting(true);
@@ -62,9 +64,24 @@ const InputWordSection = () => {
     setMatchedTag(await findMostMatchedString(value));
   };
 
-  const handleMeaningInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMeaningInputChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const value = e.target.value;
     setMeaningInput(value);
+  };
+
+  const suggestMeaning = async (e: React.MouseEvent<HTMLImageElement>) => {
+    const word = wordInput;
+    const maxWords = 50; // TODO: fare in modo che maxWords sia inserito dall'utente nelle impostazioni
+
+    if (!word) {
+      return;
+    }
+
+    setMeaningSubmitting(true);
+    setMeaningInput(await suggestedMeaningByAI(word, maxWords));
+    setMeaningSubmitting(false);
   };
 
   return (
@@ -103,17 +120,28 @@ const InputWordSection = () => {
       {/* Meaning Section */}
       {isLearned && (
         <div className="inline-flex justify-center items-center gap-2 pl-[9px] pr-[11.12px] pt-[7px] pb-2">
-          <Image
-            className="mx-1"
-            src="/assets/icons/meaningInput.png"
-            alt="Light Bulb"
-            width={28}
-            height={28}
-          />
+          {meaningSubmitting ? (
+            <PuffLoader
+              color="#1d9ff3"
+              loading
+              size={34}
+              speedMultiplier={1}
+              className="mr-2"
+            />
+          ) : (
+            <Image
+              onClick={suggestMeaning}
+              className="mx-1"
+              src="/assets/icons/meaningInput.png"
+              alt="Light Bulb"
+              width={28}
+              height={28}
+            />
+          )}
 
-          <input
-            className="p-2 rounded-lg border-2 border-solid border-[#D9D9D9]"
-            type="text"
+          <textarea
+            className="p-2 rounded-lg border-2 border-solid border-[#D9D9D9]
+            w-full min-h-[100px] max-h-64"
             maxLength={500}
             value={meaningInput}
             placeholder="Meaning"

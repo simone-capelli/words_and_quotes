@@ -16,7 +16,7 @@ export const GET = async () => {
     }
 
     return new Response(JSON.stringify(tags[0].tags), { status: 200 }); // Restituisce l'array di tag
-  } catch (error) {
+  } catch (error: any) {
     return new Response(error, { status: 500 });
   }
 };
