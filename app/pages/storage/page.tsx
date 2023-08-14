@@ -22,8 +22,7 @@ const Page = () => {
   useEffect(() => {
     setLoading(true);
     const fetchWords = async () => {
-      const timestamp = Date.now();
-      const response = await fetch(`/api/words?timestamp=${timestamp}`);
+      const response = await fetch('/api/words');
       const data = await response.json();
       setWords(data);
       setLoading(false);

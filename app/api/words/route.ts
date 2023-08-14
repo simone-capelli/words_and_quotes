@@ -5,9 +5,12 @@ export const GET = async () => {
   try {
     await connectToDB();
 
+    const headers = new Headers();
+    headers.append('Cache-Control', 'no-store');
+
     const words = await Word.find({}); // returns all words
 
-    return new Response(JSON.stringify(words), { status: 200 });
+    return new Response(JSON.stringify(words), { headers, status: 200 });
   } catch (error) {
     return new Response('Failed to fetch all words', { status: 500 });
   }
