@@ -22,7 +22,7 @@ const Page = () => {
   useEffect(() => {
     setLoading(true);
     const fetchWords = async () => {
-      const response = await fetch('/api/words');
+      const response = await fetch('/api/words', { cache: 'no-store' });
       const data = await response.json();
       setWords(data);
       setLoading(false);
