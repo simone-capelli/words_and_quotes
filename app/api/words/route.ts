@@ -1,6 +1,8 @@
 import { connectToDB } from '@utils/database';
 import Word from '@models/word';
 
+export const dynamic = 'force-dynamic';
+
 export const GET = async () => {
   try {
     await connectToDB();
