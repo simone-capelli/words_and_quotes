@@ -11,7 +11,6 @@ interface Props {
 
 const WordCard = ({ word }: Props) => {
   const [showTooltipTag, setShowTooltipTag] = useState(false);
-  const [showTooltipMeaning, setShowTooltipMeaning] = useState(false);
 
   return (
     <div className="flex flex-row p-4 items-center justify-between w-full rounded-lg border-2 border-solid border-[rgba(0,0,0,0.70)]">
@@ -31,18 +30,7 @@ const WordCard = ({ word }: Props) => {
         />
       )}
 
-      <Tooltip
-        title={word.meaning}
-        open={showTooltipMeaning}
-        onClose={() => setShowTooltipMeaning(false)}
-      >
-        <p
-          onClick={() => setShowTooltipMeaning(!showTooltipMeaning)}
-          className="text-medium"
-        >
-          {word.word}
-        </p>
-      </Tooltip>
+      <p className="text-medium">{word.word}</p>
 
       <div className="flex flex-row gap-2 items-center">
         <Tooltip
