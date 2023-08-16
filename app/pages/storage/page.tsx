@@ -39,6 +39,9 @@ const Page = () => {
         </span>
       )}
       {!loading && <WordsList words={words} />}
+      <br />
+      <br />
+      <br />
     </section>
   );
 };

@@ -2,7 +2,7 @@ import { connectToDB } from '@utils/database';
 import Word from '@models/word';
 
 export const POST = async (request: Request) => {
-  const { word, tag, isLearned, meaning } = await request.json();
+  const { word, tag, isLearned, meaning, color } = await request.json();
 
   try {
     await connectToDB();
@@ -12,6 +12,7 @@ export const POST = async (request: Request) => {
       tag,
       isLearned,
       meaning,
+      color,
     });
 
     await newWord.save();

@@ -6,6 +6,17 @@ import { findMostMatchedString, suggestedMeaningByAI } from '@utils/functions';
 import { PuffLoader } from 'react-spinners';
 
 const InputWordSection = () => {
+  const tagColorArray = [
+    'blue',
+    'green',
+    'red',
+    'lightBlue',
+    'yellow',
+    'orange',
+    'purple',
+    'magenta',
+  ];
+  const [tagColor, setTagColor] = useState('blue');
   const [isLearned, setIsLearned] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [meaningSubmitting, setMeaningSubmitting] = useState(false);
@@ -33,6 +44,7 @@ const InputWordSection = () => {
           tag: tagInput,
           isLearned: isLearned,
           meaning: meaningInput.trim(),
+          color: tagColor,
         }),
       });
     } catch (error) {
@@ -62,6 +74,15 @@ const InputWordSection = () => {
     setTagInput(value);
 
     setMatchedTag(await findMostMatchedString(value));
+  };
+
+  const handleChangeTagColor = (e: React.MouseEvent<HTMLImageElement>) => {
+    let index = tagColorArray.indexOf(tagColor);
+    if (index === tagColorArray.length - 1) {
+      setTagColor(tagColorArray[0]);
+    } else {
+      setTagColor(tagColorArray[++index]);
+    }
   };
 
   const handleMeaningInputChange = (
@@ -154,11 +175,11 @@ const InputWordSection = () => {
       <div className="flex flex-col">
         <div className="inline-flex justify-center items-center gap-2 pl-[9px] pr-[11.12px] pt-[7px] pb-2">
           <Image
-            src="/assets/icons/tag-blue.png"
+            onClick={handleChangeTagColor}
+            src={`/assets/icons/tags/tag-${tagColor}.png`}
             alt="Tag blue"
             width={36}
             height={36}
-            // in the next version, I want this Image to be a svg and have the possibility to change the color
           />
           <input
             className="p-2 rounded-lg border-2 border-solid border-[#D9D9D9]"
@@ -198,8 +219,8 @@ const InputWordSection = () => {
       <div className="flex flex-row gap-2 mx-auto pt-3">
         <button className="btn">
           <Image
-            src="/assets/icons/arrow.png"
-            alt="Tag blue"
+            src="/assets/icons/right-arrow.png"
+            alt="Right Arrow"
             width={16}
             height={16}
           />

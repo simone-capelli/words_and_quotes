@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export async function findMostMatchedString(inputString: string) {
   if (inputString === '') return '';
@@ -19,7 +19,7 @@ export async function findMostMatchedString(inputString: string) {
 }
 
 export async function suggestedMeaningByAI(word: string, maxWords: number) {
-  const prompt = `Fornisci una definizione chiara e completa della parola '${word}' in un massimo di ${maxWords} parole e un minimo di 25, in italiano.`
+  const prompt = `Fornisci una definizione chiara e completa della parola '${word}' in un massimo di ${maxWords} parole e un minimo di 25, in italiano.`;
   //console.log(prompt);
 
   try {
@@ -35,6 +35,7 @@ export async function suggestedMeaningByAI(word: string, maxWords: number) {
         prompt: prompt,
       }, */
       {
+        // prettier-ignore
         headers: {
           'Authorization': `Bearer oZP8mYQ5lAhwcxzIi_ZFMEtfkojvFz6htKVEmtiVMtM`, // Replace this with your API Key you got using the '/key get' Discord command
           'Content-Type': 'application/json',
@@ -44,7 +45,7 @@ export async function suggestedMeaningByAI(word: string, maxWords: number) {
 
     const reply = response.data.choices[0].message.content;
     // const reply = response.data.choices[0].text; // davinci model
-    
+
     return reply;
   } catch (error) {
     console.error(error);

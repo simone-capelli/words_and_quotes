@@ -24,7 +24,7 @@ const WordSchema = new Schema(
     },
     color: {
       type: String,
-      default: '#0F96EF',
+      default: 'blue',
     },
   },
   { versionKey: false }
