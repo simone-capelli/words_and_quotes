@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Word } from '@/utils/interfaces';
 import WordCard from '@components/words/WordCard';
+import { Word } from '@customTypes/interfaces';
 
 const WordsList = ({ words }: { words: Word[] }) => {
   return (

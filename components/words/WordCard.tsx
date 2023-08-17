@@ -1,6 +1,6 @@
 'use client';
 
-import { Word } from '@utils/interfaces';
+import { Word } from '@customTypes/interfaces';
 import Image from 'next/image';
 import Tooltip from '@mui/material/Tooltip';
 import { useState } from 'react';

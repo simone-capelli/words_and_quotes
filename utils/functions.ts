@@ -26,7 +26,7 @@ export async function suggestedMeaningByAI(word: string, maxWords: number) {
     const response = await axios.post(
       'https://chimeragpt.adventblocks.cc/api/v1/chat/completions',
       {
-        model: 'gpt-4',
+        model: 'gpt-3.5-turbo', // gpt-4 not responding
         messages: [{ role: 'user', content: prompt }],
       },
       /* 'https://chimeragpt.adventblocks.cc/api/v1/completions',
