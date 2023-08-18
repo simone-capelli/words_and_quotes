@@ -18,12 +18,34 @@
   @apply text-black text-center text-base not-italic font-normal leading-[normal];
   font-family: Outfit;
 }
+.tag-text {
+  @apply text-black font-thin;
+  font-family: Outfit;
+}
 .btn {
   @apply flex w-[110px] h-[37px] justify-center items-center gap-2.5 shrink-0 border px-4 py-0 rounded-[5px] border-solid border-[rgba(0,0,0,0.31)];
 }
 .btn-save {
   background: rgba(0, 0, 0, 0.871);
   font-family: Inter;
+}
+
+/* Modals */
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Bottom bar */

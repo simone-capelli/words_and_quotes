@@ -109,24 +109,19 @@ const InputWordSection = () => {
     <div className="flex flex-col gap-4 pt-6">
       {/* Word Section */}
       <div className="inline-flex justify-center items-center gap-2 pl-[9px] pr-[11.12px] pt-[7px] pb-2">
-        {isLearned ? (
-          <Image
-            onClick={() => setIsLearned(false)}
-            className="mx-1"
-            src="/assets/icons/done_tick-green.png"
-            alt="Word Learned"
-            width={28}
-            height={28}
-          />
-        ) : (
-          <Image
-            onClick={() => setIsLearned(true)}
-            src="/assets/icons/question-mark.png"
-            alt="Word To Learn"
-            width={36}
-            height={36}
-          />
-        )}
+        <Image
+          onClick={
+            isLearned ? () => setIsLearned(false) : () => setIsLearned(true)
+          }
+          src={
+            isLearned
+              ? '/assets/icons/done_tick-green.png'
+              : '/assets/icons/question-mark.png'
+          }
+          alt={isLearned ? 'Word Learned' : 'Word To Learn'}
+          width={isLearned ? 28 : 36}
+          height={isLearned ? 28 : 36}
+        />
 
         <input
           className="p-2 rounded-lg border-2 border-solid border-[#D9D9D9]"
@@ -161,7 +156,7 @@ const InputWordSection = () => {
           )}
 
           <textarea
-            className="p-2 rounded-lg border-2 border-solid border-[#D9D9D9]
+            className="px-2 pt-1 rounded-lg border-2 border-solid border-[#D9D9D9]
             w-full min-h-[100px] max-h-64"
             maxLength={500}
             value={meaningInput}
