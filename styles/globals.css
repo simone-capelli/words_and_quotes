@@ -6,10 +6,13 @@
 @tailwind utilities;
 
 /* Word And Quotes Styles */
-/* Header */
+/* Header & styles*/
 
 .header-title {
   @apply flex flex-row text-black text-center text-[32px] not-italic font-normal leading-[normal] capitalize;
+  font-family: Outfit;
+}
+.outfit {
   font-family: Outfit;
 }
 

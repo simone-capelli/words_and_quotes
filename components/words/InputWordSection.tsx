@@ -121,6 +121,7 @@ const InputWordSection = () => {
           alt={isLearned ? 'Word Learned' : 'Word To Learn'}
           width={isLearned ? 28 : 36}
           height={isLearned ? 28 : 36}
+          className={isLearned ? ' ml-2' : ''}
         />
 
         <input
