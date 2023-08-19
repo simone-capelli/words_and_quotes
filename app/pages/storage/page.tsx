@@ -68,7 +68,7 @@ const Page = () => {
             {filterByLearned === 0 ? (
               <Image
                 onClick={handleFilterByLearned}
-                src={'/assets/icons/question-mark.png'}
+                src={'/assets/icons/filterIsLearned.png'}
                 alt="Filter Not selected"
                 width={32}
                 height={32}
