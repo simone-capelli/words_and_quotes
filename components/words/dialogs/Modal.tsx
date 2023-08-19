@@ -16,17 +16,6 @@ export const Modal = ({
   isOpen: boolean;
   onClose: () => void;
 }) => {
-  const [meaningSubmitting, setMeaningSubmitting] = useState(false);
-  const [meaningInput, setMeaningInput] = useState(word.meaning);
-
-  const suggestMeaning = async (e: React.MouseEvent<HTMLImageElement>) => {
-    const maxWords = 50; // TODO: fare in modo che maxWords sia inserito dall'utente nelle impostazioni
-
-    setMeaningSubmitting(true);
-    setMeaningInput(await suggestedMeaningByAI(word.word, maxWords));
-    setMeaningSubmitting(false);
-  };
-
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -37,32 +26,103 @@ export const Modal = ({
     setModalOpen(false);
   };
 
+  const [isEditing, setIsEditing] = useState(false);
+  //TODO: function with loading that awaits patch
+  const [isLearned, setIsLearned] = useState(word.isLearned);
+
+  const [meaningSubmitting, setMeaningSubmitting] = useState(false);
+  const [meaningInput, setMeaningInput] = useState(word.meaning);
+
+  const handleMeaningInputChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const value = e.target.value;
+    setMeaningInput(value);
+  };
+
+  const suggestMeaning = async (e: React.MouseEvent<HTMLImageElement>) => {
+    const maxWords = 50; // TODO: fare in modo che maxWords sia inserito dall'utente nelle impostazioni
+
+    setMeaningSubmitting(true);
+    setMeaningInput(await suggestedMeaningByAI(word.word, maxWords));
+    setMeaningSubmitting(false);
+
+    setIsEditing(true); // When you generate a Word with AI you enter EDIT MODE
+  };
+
+  const tagColorArray = [
+    'blue',
+    'green',
+    'red',
+    'lightBlue',
+    'yellow',
+    'orange',
+    'purple',
+    'magenta',
+  ];
+  const [tagColor, setTagColor] = useState(word.color);
+
+  const handleChangeTagColor = (e: React.MouseEvent<HTMLImageElement>) => {
+    let index = tagColorArray.indexOf(tagColor);
+    if (index === tagColorArray.length - 1) {
+      setTagColor(tagColorArray[0]);
+    } else {
+      setTagColor(tagColorArray[++index]);
+    }
+  };
+
+  const [tagInput, setTagInput] = useState(word.tag);
+  const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setTagInput(value);
+  };
+
   return (
     <div className={`modal ${isOpen ? 'open' : ''}`}>
       <div className="p-4 flex flex-col justify-between w-[300px] h-[450px] shrink-0 rounded-[5px] border-[2px] border-solid border-black bg-white">
         <div>
           <div className="w-full flex flex-row justify-between items-center">
             <Image
+              onClick={isEditing ? () => setIsLearned(!isLearned) : () => {}}
               src={
-                word.isLearned
+                isLearned
                   ? '/assets/icons/done_tick-green.png'
                   : '/assets/icons/question-mark.png'
               }
               alt={word.isLearned ? 'Word Learned' : 'Word To Learn'}
               width={word.isLearned ? 24 : 28}
               height={word.isLearned ? 24 : 28}
+              className={isEditing ? 'cursor-pointer' : ''}
             />
             <p className="header-title">{word.word}</p>
 
             <Image
-              src={`/assets/icons/tags/tag-${word.color}.png`}
-              alt={`Tag ${word.color}`}
+              onClick={isEditing ? handleChangeTagColor : () => {}}
+              src={`/assets/icons/tags/tag-${tagColor}.png`}
+              alt={`Tag ${tagColor}`}
               width={28}
               height={28}
+              className={isEditing ? 'cursor-pointer' : ''}
             />
           </div>
 
-          <p className="tag-text flex-center items-center">{`#${word.tag}`}</p>
+          {isEditing ? (
+            <div className="pt-2 flex-center items-center">
+              <input
+                className="px-2 py-1 rounded-lg border-2 border-solid border-[#D9D9D9] w-1/2"
+                type="text"
+                maxLength={50}
+                value={tagInput}
+                placeholder="Tag"
+                onChange={handleTagInputChange}
+                onBlur={() => {
+                  setTagInput(tagInput.trim());
+                }}
+              />
+            </div>
+          ) : (
+            <p className="tag-text flex-center items-center">{`#${tagInput}`}</p>
+          )}
 
           <p className="w-full mt-4 h-[1px] bg-black"></p>
         </div>
@@ -70,11 +130,13 @@ export const Modal = ({
         <div className="h-[250px]">
           {meaningInput ? (
             <textarea
+              onChange={handleMeaningInputChange}
               className="px-2 pt-1 rounded-lg border-2 border-solid border-[#D9D9D9]
             w-full h-[250px] resize-none"
               maxLength={500}
               value={meaningInput}
               placeholder="Meaning"
+              disabled={!isEditing}
             />
           ) : (
             <>
@@ -103,26 +165,31 @@ export const Modal = ({
           )}
         </div>
 
-        <div className="w-full flex flex-row justify-between items-center">
+        <div className="w-full flex flex-row justify-between items-center px-2">
           <Image
-            onClick={openModal}
+            onClick={isEditing ? () => {} : openModal}
             src={'/assets/icons/trash.png'}
-            alt={word.isLearned ? 'Word Learned' : 'Word To Learn'}
+            alt="Delete button"
             width={28}
             height={28}
+            className={isEditing ? 'opacity-50' : 'cursor-pointer'}
           />
           <button
-            onClick={onClose}
+            onClick={onClose} //TODO: here I can show a modal that say: "If you close this your updatings will be lost, do you want to exit? Yes (red) / No (opacity 50)"
             className="bg-white opacity-50 px-3 rounded-lg border-2 border-solid border-[#D9D9D9]"
           >
             Close
           </button>
 
           <Image
-            src={`/assets/icons/edit.png`}
+            onClick={() => setIsEditing(!isEditing)} // TODO: create a function that awaits the patch and display a loading
+            src={
+              isEditing ? '/assets/icons/update.png' : '/assets/icons/edit.png'
+            }
             alt={`Tag ${word.color}`}
             width={28}
             height={28}
+            className="cursor-pointer"
           />
         </div>
       </div>
