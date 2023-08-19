@@ -16,18 +16,45 @@ export const Modal = ({
   isOpen: boolean;
   onClose: () => void;
 }) => {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
+  // DELETE MODAL
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const openDeleteModal = () => {
+    setShowDeleteModal(true);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const closeDeleteModal = () => {
+    setShowDeleteModal(false);
+  };
+
+  // EDIT/UPDATE MODAL
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const openUpdateModal = () => {
+    setShowUpdateModal(true);
+
+    updateWord();
+  };
+
+  const closeUpdateModal = () => {
+    setShowUpdateModal(false);
   };
 
   const [isEditing, setIsEditing] = useState(false);
-  //TODO: function with loading that awaits patch
+  const [updatedWord, setUpdatedWord] = useState(word);
+
+  const updateWord = () => {
+    const updatedWord: Word = {
+      _id: word._id,
+      word: word.word,
+      color: tagColor,
+      tag: tagInput,
+      meaning: meaningInput,
+      isLearned: isLearned,
+      createdTime: word.createdTime,
+    };
+
+    setUpdatedWord(updatedWord);
+  };
+
   const [isLearned, setIsLearned] = useState(word.isLearned);
 
   const [meaningSubmitting, setMeaningSubmitting] = useState(false);
@@ -167,7 +194,7 @@ export const Modal = ({
 
         <div className="w-full flex flex-row justify-between items-center px-2">
           <Image
-            onClick={isEditing ? () => {} : openModal}
+            onClick={isEditing ? () => {} : openDeleteModal}
             src={'/assets/icons/trash.png'}
             alt="Delete button"
             width={28}
@@ -182,7 +209,9 @@ export const Modal = ({
           </button>
 
           <Image
-            onClick={() => setIsEditing(!isEditing)} // TODO: create a function that awaits the patch and display a loading
+            onClick={
+              isEditing ? openUpdateModal : () => setIsEditing(!isEditing)
+            } // TODO: create a function that awaits the patch and display a loading
             src={
               isEditing ? '/assets/icons/update.png' : '/assets/icons/edit.png'
             }
@@ -197,8 +226,18 @@ export const Modal = ({
       <ActionModal
         word={word}
         action="Delete"
-        isOpen={modalOpen}
-        onClose={closeModal}
+        actionColor="#FF0D0D"
+        isOpen={showDeleteModal}
+        onClose={closeDeleteModal}
+        closeParentModal={onClose}
+      />
+
+      <ActionModal
+        word={updatedWord}
+        action="Update"
+        actionColor="#44A4F2"
+        isOpen={showUpdateModal}
+        onClose={closeUpdateModal}
         closeParentModal={onClose}
       />
     </div>
