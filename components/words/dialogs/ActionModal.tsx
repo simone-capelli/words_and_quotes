@@ -5,14 +5,12 @@ import { Word } from '@customTypes/interfaces';
 export const ActionModal = ({
   word,
   action,
-  actionColor,
   isOpen,
   onClose,
   closeParentModal,
 }: {
   word: Word;
   action: string;
-  actionColor: string;
   isOpen: boolean;
   onClose: () => void;
   closeParentModal: () => void;
@@ -55,7 +53,11 @@ export const ActionModal = ({
           </button>
           <button
             onClick={action === 'Update' ? updateWord : deleteWord}
-            className={`border-[${actionColor}] text-[${actionColor}] border-[1px] rounded-[5px] px-2 py-1`}
+            className={`${
+              action === 'Update'
+                ? 'border-[#44A4F2] text-[#44A4F2]'
+                : 'border-[#FF0D0D] text-[#FF0D0D]'
+            } border-[1px] rounded-[5px] px-2 py-1`}
           >
             {action}
           </button>

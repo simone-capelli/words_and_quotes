@@ -230,7 +230,6 @@ export const Modal = ({
       <ActionModal
         word={word}
         action="Delete"
-        actionColor="#FF0D0D"
         isOpen={showDeleteModal}
         onClose={closeDeleteModal}
         closeParentModal={onClose}
@@ -239,7 +238,6 @@ export const Modal = ({
       <ActionModal
         word={updatedWord}
         action="Update"
-        actionColor="#44A4F2"
         isOpen={showUpdateModal}
         onClose={closeUpdateModal}
         closeParentModal={onClose}

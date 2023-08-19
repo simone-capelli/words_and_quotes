@@ -57,6 +57,7 @@ const WordCard = ({ word }: Props) => {
           alt="Info"
           width={20}
           height={20}
+          className="cursor-pointer"
         />
 
         <Modal word={word} isOpen={modalOpen} onClose={closeModal} />
