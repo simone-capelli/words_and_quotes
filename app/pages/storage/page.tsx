@@ -7,7 +7,7 @@ import { Word } from '@customTypes/interfaces';
 
 const WordsList = ({ words }: { words: Word[] }) => {
   return (
-    <div className="pt-3 w-full flex flex-col gap-2">
+    <div className="pt-16 w-full flex flex-col gap-2">
       {words.map((word: Word) => (
         <WordCard word={word} key={word._id} />
       ))}
@@ -48,7 +48,7 @@ const Page = () => {
 
       setFilterByLearned(2);
     } else {
-      fetchWords();
+      setFilteredWords(words);
 
       setFilterByLearned(0);
     }
@@ -56,7 +56,9 @@ const Page = () => {
 
   return (
     <section className="w-full pt-12 text-[#000000]">
-      <h1 className="pt-1 flex-center text-medium">Storage</h1>
+      <h1 className="fixed z-20 w-full right-1 pt-1 flex-center text-medium bg-slate-50">
+        Storage
+      </h1>
       {loading && (
         <span className="loader ml-[19%] md:ml-[40%] sm:ml-[35%] md:mt-[15%] mt-[20%]">
           L &nbsp; ading
@@ -64,50 +66,54 @@ const Page = () => {
       )}
       {!loading && (
         <div>
-          <div className="pt-5 p-2 flex flex-row justify-between items-center">
-            {filterByLearned === 0 ? (
-              <Image
-                onClick={handleFilterByLearned}
-                src={'/assets/icons/filterIsLearned.png'}
-                alt="Filter Not selected"
-                width={32}
-                height={32}
-                className="opacity-50 cursor-pointer"
-              />
-            ) : filterByLearned === 1 ? (
-              <Image
-                onClick={handleFilterByLearned}
-                src={'/assets/icons/question-mark.png'}
-                alt="Learned"
-                width={32}
-                height={32}
-                className="cursor-pointer"
-              />
-            ) : (
-              <Image
-                onClick={handleFilterByLearned}
-                src={'/assets/icons/done_tick-green.png'}
-                alt="To Learn"
-                width={32}
-                height={32}
-                className="cursor-pointer"
-              />
-            )}
+          <div className="fixed z-10 w-full right-1 px-10 bg-slate-50">
+            <div className="pt-10 p-2 flex flex-row justify-between items-center">
+              {filterByLearned === 0 ? (
+                <Image
+                  onClick={handleFilterByLearned}
+                  src={'/assets/icons/filterIsLearned.png'}
+                  alt="Filter Not selected"
+                  width={32}
+                  height={32}
+                  className="opacity-50 cursor-pointer"
+                />
+              ) : filterByLearned === 1 ? (
+                <Image
+                  onClick={handleFilterByLearned}
+                  src={'/assets/icons/question-mark.png'}
+                  alt="Learned"
+                  width={32}
+                  height={32}
+                  className="cursor-pointer"
+                />
+              ) : (
+                <Image
+                  onClick={handleFilterByLearned}
+                  src={'/assets/icons/done_tick-green.png'}
+                  alt="To Learn"
+                  width={32}
+                  height={32}
+                  className="cursor-pointer"
+                />
+              )}
 
-            <Image
-              src={'/assets/icons/tags/tag-unselect.png'}
-              alt="Tag Not Selected"
-              width={32}
-              height={32}
-            />
+              <Image
+                src={'/assets/icons/tags/tag-unselect.png'}
+                alt="Tag Not Selected"
+                width={32}
+                height={32}
+              />
 
-            <Image
-              src={'/assets/icons/down-arrow.png'}
-              alt="Down Arrow"
-              width={32}
-              height={32}
-            />
+              <Image
+                src={'/assets/icons/down-arrow.png'}
+                alt="Down Arrow"
+                width={32}
+                height={32}
+              />
+            </div>
           </div>
+
+          <br />
           <WordsList words={filteredWords} />
         </div>
       )}
