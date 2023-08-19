@@ -1,6 +1,7 @@
 'use client';
 
 import { Word } from '@customTypes/interfaces';
+import { useState } from 'react';
 
 export const ActionModal = ({
   word,
@@ -15,20 +16,28 @@ export const ActionModal = ({
   onClose: () => void;
   closeParentModal: () => void;
 }) => {
+  const [updating, setUpdating] = useState(false);
+
   const deleteWord = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    setUpdating(true);
     await fetch(`/api/words/${word._id}`, {
       method: 'DELETE',
       body: JSON.stringify({ id: word._id }),
     });
+    setUpdating(false);
+
     closeAllModals();
     window.location.reload();
   };
 
   const updateWord = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    setUpdating(true);
     await fetch(`/api/words/${word._id}`, {
       method: 'PATCH',
       body: JSON.stringify({ word }),
     });
+    setUpdating(false);
+
     closeAllModals();
     window.location.reload();
   };
@@ -51,16 +60,20 @@ export const ActionModal = ({
           >
             Close
           </button>
-          <button
-            onClick={action === 'Update' ? updateWord : deleteWord}
-            className={`${
-              action === 'Update'
-                ? 'border-[#44A4F2] text-[#44A4F2]'
-                : 'border-[#FF0D0D] text-[#FF0D0D]'
-            } border-[1px] rounded-[5px] px-2 py-1`}
-          >
-            {action}
-          </button>
+          {updating ? (
+            <span className="loader_green-blue"></span>
+          ) : (
+            <button
+              onClick={action === 'Update' ? updateWord : deleteWord}
+              className={`${
+                action === 'Update'
+                  ? 'border-[#44A4F2] text-[#44A4F2]'
+                  : 'border-[#FF0D0D] text-[#FF0D0D]'
+              } border-[1px] rounded-[5px] px-2 py-1`}
+            >
+              {action}
+            </button>
+          )}
         </div>
       </div>
     </div>
