@@ -155,7 +155,7 @@ export const Modal = ({
         </div>
 
         <div className="h-[250px]">
-          {meaningInput ? (
+          {isEditing || meaningInput ? (
             <textarea
               onChange={handleMeaningInputChange}
               className="px-2 pt-1 rounded-lg border-2 border-solid border-[#D9D9D9]
@@ -167,12 +167,13 @@ export const Modal = ({
             />
           ) : (
             <>
-              <p style={{ fontFamily: 'Outfit' }}>
-                Insert meaning or generate it with AI!
+              <p className="pb-3" style={{ fontFamily: 'Outfit' }}>
+                Add meaning or generate it with AI!
               </p>
+
               {meaningSubmitting ? (
                 <PuffLoader
-                  className="mx-auto mt-14"
+                  className="mx-auto mt-8"
                   color="#1d9ff3"
                   loading
                   size={100}
@@ -181,7 +182,7 @@ export const Modal = ({
               ) : (
                 <Image
                   onClick={suggestMeaning}
-                  className="mx-auto mt-14"
+                  className="mx-auto mt-8 cursor-pointer"
                   src="/assets/icons/meaningInput.png"
                   alt="Light Bulb"
                   width={100}
@@ -202,7 +203,10 @@ export const Modal = ({
             className={isEditing ? 'opacity-50' : 'cursor-pointer'}
           />
           <button
-            onClick={onClose} //TODO: here I can show a modal that say: "If you close this your updatings will be lost, do you want to exit? Yes (red) / No (opacity 50)"
+            onClick={() => {
+              onClose();
+              setIsEditing(false);
+            }} //TODO: here I can show a modal that say: "If you close this your updatings will be lost, do you want to exit? Yes (red) / No (opacity 50)"
             className="bg-white opacity-50 px-3 rounded-lg border-2 border-solid border-[#D9D9D9]"
           >
             Close
