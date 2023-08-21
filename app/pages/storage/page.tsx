@@ -54,6 +54,19 @@ const Page = () => {
     }
   };
 
+  const [tagColor, setTagColor] = useState('unselect');
+
+  const handleSelectedTag = (e: React.MouseEvent<HTMLImageElement>) => {
+    const color = e.currentTarget.id;
+    setTagColor(color);
+
+    const element = document.getElementById('tagSection');
+    if (element) element.style.visibility = 'hidden';
+
+    const filteredWords = words.filter((word) => word.color === color);
+    setFilteredWords(filteredWords);
+  };
+
   return (
     <section className="w-full pt-12 text-[#000000]">
       <h1 className="fixed z-20 w-full right-1 pt-1 flex-center text-medium bg-slate-50">
@@ -65,9 +78,9 @@ const Page = () => {
         </span>
       )}
       {!loading && (
-        <div>
-          <div className="fixed z-10 w-full right-1 px-10 bg-slate-50">
-            <div className="pt-10 p-2 flex flex-row justify-between items-center">
+        <>
+          <div className="fixed w-full flex items-center justify-between z-10 px-10 bg-slate-50 right-1">
+            <div className="pt-10 p-2 w-full flex flex-row justify-between items-center">
               {filterByLearned === 0 ? (
                 <Image
                   onClick={handleFilterByLearned}
@@ -98,8 +111,23 @@ const Page = () => {
               )}
 
               <Image
-                src={'/assets/icons/tags/tag-unselect.png'}
-                alt="Tag Not Selected"
+                onClick={() => {
+                  setFilteredWords(words);
+
+                  if (tagColor !== 'unselect') setTagColor('unselect');
+
+                  const element = document.getElementById('tagSection');
+                  if (element) {
+                    if (
+                      element.style.visibility === 'hidden' &&
+                      tagColor === 'unselect'
+                    )
+                      element.style.visibility = 'visible';
+                    else element.style.visibility = 'hidden';
+                  }
+                }}
+                src={`/assets/icons/tags/tag-${tagColor}.png`}
+                alt="Tag Selection"
                 width={32}
                 height={32}
               />
@@ -113,9 +141,87 @@ const Page = () => {
             </div>
           </div>
 
+          <div
+            style={{ visibility: 'hidden' }}
+            id="tagSection"
+            className="fixed w-full flex justify-center items-center z-10 mt-20 right-1"
+          >
+            <div className="p-2 gap-4 w-[150px] flex flex-col border rounded-[5px] border-solid border-black bg-white">
+              <div className="flex flex-row justify-between">
+                <Image
+                  onClick={handleSelectedTag}
+                  id="blue"
+                  src={'/assets/icons/tags/tag-blue.png'}
+                  alt="blue"
+                  width={32}
+                  height={32}
+                />
+                <Image
+                  onClick={handleSelectedTag}
+                  id="purple"
+                  src={'/assets/icons/tags/tag-purple.png'}
+                  alt="purple"
+                  width={32}
+                  height={32}
+                />
+                <Image
+                  onClick={handleSelectedTag}
+                  id="green"
+                  src={'/assets/icons/tags/tag-green.png'}
+                  alt="green"
+                  width={32}
+                  height={32}
+                />
+                <Image
+                  onClick={handleSelectedTag}
+                  id="red"
+                  src={'/assets/icons/tags/tag-red.png'}
+                  alt="red"
+                  width={32}
+                  height={32}
+                />
+              </div>
+
+              <div className="flex flex-row justify-between">
+                <Image
+                  onClick={handleSelectedTag}
+                  id="lightBlue"
+                  src={'/assets/icons/tags/tag-lightBlue.png'}
+                  alt="lightBlue"
+                  width={32}
+                  height={32}
+                />
+                <Image
+                  onClick={handleSelectedTag}
+                  id="magenta"
+                  src={'/assets/icons/tags/tag-magenta.png'}
+                  alt="magenta"
+                  width={32}
+                  height={32}
+                />
+                <Image
+                  onClick={handleSelectedTag}
+                  id="orange"
+                  src={'/assets/icons/tags/tag-orange.png'}
+                  alt="orange"
+                  width={32}
+                  height={32}
+                />
+                <Image
+                  onClick={handleSelectedTag}
+                  id="yellow"
+                  src={'/assets/icons/tags/tag-yellow.png'}
+                  alt="yellow"
+                  width={32}
+                  height={32}
+                />
+              </div>
+            </div>
+          </div>
+
           <br />
           <WordsList words={filteredWords} />
-        </div>
+        </>
       )}
       <br />
       <br />
