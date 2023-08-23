@@ -1,9 +1,16 @@
 import axios from 'axios';
 
-export async function findMostMatchedString(inputString: string) {
+export async function findMostMatchedString(
+  inputString: string,
+  userId: string
+) {
   if (inputString === '') return '';
 
-  const response = await fetch('/api/words/tags');
+  const response = await fetch('/api/words/tags', {
+    method: 'POST',
+    body: JSON.stringify({ userId }),
+    cache: 'no-store',
+  });
   const tags = await response.json();
 
   // check if response is empty -> when there are no words yet

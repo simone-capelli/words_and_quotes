@@ -35,6 +35,7 @@ const InputWordSection = () => {
 
   const saveWord = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setMatchedTag('');
 
     if (!wordInput || !tagInput || meaningSubmitting) {
       return;
@@ -81,7 +82,7 @@ const InputWordSection = () => {
     const value = e.target.value;
     setTagInput(value);
 
-    setMatchedTag(await findMostMatchedString(value));
+    setMatchedTag(await findMostMatchedString(value, userId));
   };
 
   const handleChangeTagColor = (e: React.MouseEvent<HTMLImageElement>) => {

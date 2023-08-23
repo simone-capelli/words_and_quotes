@@ -44,6 +44,7 @@ export const Modal = ({
   const updateWord = () => {
     const updatedWord: Word = {
       _id: word._id,
+      userId: word.userId,
       word: word.word,
       color: tagColor,
       tag: tagInput,
