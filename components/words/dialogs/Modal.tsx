@@ -105,7 +105,7 @@ export const Modal = ({
   };
 
   return (
-    <div className={`modal ${isOpen ? 'open' : ''}`}>
+    <div className={`sm:pt-8 modal ${isOpen ? 'open' : ''}`}>
       <div className="p-4 flex flex-col justify-between w-[300px] h-[450px] shrink-0 rounded-[5px] border-[2px] border-solid border-black bg-white">
         <div>
           <div className="w-full flex flex-row justify-between items-center">

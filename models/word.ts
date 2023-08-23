@@ -2,6 +2,10 @@ import { Schema, model, models } from 'mongoose';
 
 const WordSchema = new Schema(
   {
+    userId: {
+      type: String,
+      required: [true, 'UserId is required.'],
+    },
     word: {
       type: String,
       required: [true, 'Word is required.'],

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import WordCard from '@components/words/WordCard';
 import { Word } from '@customTypes/interfaces';
+import { useUser } from '@clerk/nextjs';
 
 const WordsList = ({ words }: { words: Word[] }) => {
   return (
@@ -16,23 +17,31 @@ const WordsList = ({ words }: { words: Word[] }) => {
 };
 
 const Page = () => {
+  const { user } = useUser();
+  const userId = String(user?.id);
+
   const [words, setWords] = useState<Word[]>([]);
   const [filteredWords, setFilteredWords] = useState<Word[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchWords = async () => {
-    setLoading(true);
-    const response = await fetch('/api/words', { cache: 'no-store' });
-    const data = await response.json();
-    setWords(data);
-    setFilteredWords(data);
-
-    setLoading(false);
-  };
-
   useEffect(() => {
+    const fetchWords = async () => {
+      setLoading(true);
+      const response = await fetch(`/api/words/${userId}`, {
+        method: 'POST',
+        body: JSON.stringify({ userId }),
+        cache: 'no-store',
+      });
+
+      const data = await response.json();
+      setWords(data);
+      setFilteredWords(data);
+
+      setLoading(false);
+    };
+
     fetchWords();
-  }, []);
+  }, [userId]);
 
   const [filterByLearned, setFilterByLearned] = useState(0);
   const [tagColor, setTagColor] = useState('unselect');

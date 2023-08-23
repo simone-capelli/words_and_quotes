@@ -5,9 +5,13 @@ import Image from 'next/image';
 import { findMostMatchedString, suggestedMeaningByAI } from '@utils/functions';
 import { PuffLoader } from 'react-spinners';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@clerk/nextjs';
 
 const InputWordSection = () => {
   const router = useRouter();
+  let { user } = useUser();
+
+  const userId = String(user?.id);
 
   const tagColorArray = [
     'blue',
@@ -43,6 +47,7 @@ const InputWordSection = () => {
       const response = fetch('/api/words/new', {
         method: 'POST',
         body: JSON.stringify({
+          userId: userId,
           word: wordInput.toLowerCase(),
           tag: tagInput,
           isLearned: isLearned,
