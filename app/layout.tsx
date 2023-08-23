@@ -1,6 +1,7 @@
 import Nav from '@components/Nav';
 import BottomBar from '@components/BottomBar';
 import '@styles/globals.css';
+import { ClerkProvider } from '@clerk/nextjs';
 
 export const metadata = {
   title: 'WordsAndQuotes',
@@ -9,19 +10,21 @@ export const metadata = {
 
 const RootLayout = ({ children }: any) => {
   return (
-    <html lang="en">
-      <body>
-        <div className="main">
-          <div className="gradient" />
-        </div>
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          <div className="main">
+            <div className="gradient" />
+          </div>
 
-        <main className="app">
-          <Nav />
-          {children}
-          <BottomBar />
-        </main>
-      </body>
-    </html>
+          <main className="app">
+            <Nav />
+            {children}
+            <BottomBar />
+          </main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 };
 
