@@ -15,8 +15,18 @@ const Home = () => {
       />
 
       <div className="text-medium flex flex-row gap-1 pt-10">
-        <p>Initial Page</p>
+        <p>Have</p>
+        <p className="text-[#268C41]">you</p>
+        <p>found</p>
+        <p className="text-[#268C41]">new</p>
+        <p>words</p>
+        <div className="text-[#268C41] flex flex-row">
+          today
+          <p className="text-black">?</p>
+        </div>
       </div>
+
+      <InputWordSection />
 
       <br />
       <br />

@@ -4,8 +4,8 @@ const Nav = () => {
   return (
     <nav className="fixed top-0 z-30 flex justify-between items-center w-full bg-slate-50 pt-2 px-6 pb-2">
       <Image
-        src="/assets/icons/values.png"
-        alt="Life Values"
+        src="/assets/icons/doubts-button.png"
+        alt="Questions"
         width={30}
         height={30}
       />
@@ -17,10 +17,10 @@ const Nav = () => {
       </div>
 
       <Image
-        src="/assets/icons/goals.png"
-        alt="Goals Black"
-        width={30}
-        height={30}
+        src="/assets/icons/user.png"
+        alt="authentication"
+        width={23}
+        height={23}
       />
     </nav>
   );

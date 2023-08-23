@@ -4,8 +4,11 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { findMostMatchedString, suggestedMeaningByAI } from '@utils/functions';
 import { PuffLoader } from 'react-spinners';
+import { useRouter } from 'next/navigation';
 
 const InputWordSection = () => {
+  const router = useRouter();
+
   const tagColorArray = [
     'blue',
     'green',
@@ -213,14 +216,14 @@ const InputWordSection = () => {
 
       {/* Save and Change Section */}
       <div className="flex flex-row gap-2 mx-auto pt-3">
-        <button className="btn">
+        <button className="btn" onClick={() => router.push('/words/storage')}>
+          Words
           <Image
             src="/assets/icons/right-arrow.png"
             alt="Right Arrow"
             width={16}
             height={16}
           />
-          Quote
         </button>
         <button
           className="btn btn-save text-white font-medium"

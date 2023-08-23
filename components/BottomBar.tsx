@@ -9,14 +9,14 @@ const BottomBar = () => {
     <section className="bottombar">
       <div className="bottombar_container">
         <Image
-          src="/assets/icons/find-meaning.png"
-          alt="Meaning"
-          width={30}
-          height={30}
+          src="/assets/icons/feedback.png"
+          alt="feedback"
+          width={32}
+          height={32}
         />
         <Image
           onClick={() => {
-            router.push('/');
+            router.push('/words');
           }}
           src="/assets/images/word_medium-letter_white.png"
           alt="Word_letter white"
@@ -25,12 +25,12 @@ const BottomBar = () => {
         />
         <Image
           onClick={() => {
-            router.push('/pages/storage');
+            router.push('/words/storage');
           }}
           src="/assets/icons/storage.png"
           alt="Storage"
-          width={30}
-          height={30}
+          width={32}
+          height={32}
         />
       </div>
     </section>
