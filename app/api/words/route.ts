@@ -14,3 +14,16 @@ export const GET = async () => {
     return new Response('Failed to fetch all words', { status: 500 });
   }
 };
+
+export const POST = async (request: Request) => {
+  const { userId } = await request.json();
+
+  try {
+    await connectToDB();
+    const count = await Word.countDocuments({ userId: userId });
+
+    return new Response(JSON.stringify(count.toString()), { status: 200 });
+  } catch (error: any) {
+    return new Response(error, { status: 500 });
+  }
+};

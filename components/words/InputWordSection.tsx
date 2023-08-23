@@ -7,10 +7,11 @@ import { PuffLoader } from 'react-spinners';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 
+import { wordsLimit } from '@constants';
+
 const InputWordSection = () => {
   const router = useRouter();
   let { user } = useUser();
-
   const userId = String(user?.id);
 
   const tagColorArray = [
@@ -36,6 +37,16 @@ const InputWordSection = () => {
   const saveWord = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setMatchedTag('');
+
+    const res = await fetch('/api/words', {
+      method: 'POST',
+      body: JSON.stringify({
+        userId: userId,
+      }),
+    });
+    const count = await res.json();
+
+    if (count > wordsLimit) return;
 
     if (!wordInput || !tagInput || meaningSubmitting) {
       return;
