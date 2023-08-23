@@ -35,36 +35,48 @@ const Page = () => {
   }, []);
 
   const [filterByLearned, setFilterByLearned] = useState(0);
+  const [tagColor, setTagColor] = useState('unselect');
+  const [alphabetFilter, setAlphabetFilter] = useState(0);
 
   const handleFilterByLearned = () => {
     if (filterByLearned === 0) {
-      const filteredWords = words.filter((word) => word.isLearned === false);
-      setFilteredWords(filteredWords);
-
+      setFilteredWords(words.filter((word) => word.isLearned === false));
       setFilterByLearned(1);
     } else if (filterByLearned === 1) {
-      const filteredWords = words.filter((word) => word.isLearned === true);
-      setFilteredWords(filteredWords);
-
+      setFilteredWords(words.filter((word) => word.isLearned === true));
       setFilterByLearned(2);
     } else {
       setFilteredWords(words);
-
       setFilterByLearned(0);
     }
+    setTagColor('unselect');
   };
-
-  const [tagColor, setTagColor] = useState('unselect');
 
   const handleSelectedTag = (e: React.MouseEvent<HTMLImageElement>) => {
     const color = e.currentTarget.id;
+    console.log(color);
     setTagColor(color);
+
+    setFilteredWords(words.filter((word) => word.color === color));
 
     const element = document.getElementById('tagSection');
     if (element) element.style.visibility = 'hidden';
 
-    const filteredWords = words.filter((word) => word.color === color);
-    setFilteredWords(filteredWords);
+    setFilterByLearned(0);
+  };
+
+  const handleAlphabeticOrder = () => {
+    if (alphabetFilter === 0 || alphabetFilter === 2) {
+      setFilteredWords(
+        filteredWords.sort((a, b) => a.word.localeCompare(b.word))
+      );
+      setAlphabetFilter(1);
+    } else if (alphabetFilter === 1) {
+      setFilteredWords(
+        filteredWords.sort((a, b) => b.word.localeCompare(a.word))
+      );
+      setAlphabetFilter(2);
+    }
   };
 
   return (
@@ -112,9 +124,10 @@ const Page = () => {
 
               <Image
                 onClick={() => {
-                  setFilteredWords(words);
-
-                  if (tagColor !== 'unselect') setTagColor('unselect');
+                  if (tagColor !== 'unselect') {
+                    setTagColor('unselect');
+                    setFilteredWords(words);
+                  }
 
                   const element = document.getElementById('tagSection');
                   if (element) {
@@ -132,12 +145,32 @@ const Page = () => {
                 height={32}
               />
 
-              <Image
-                src={'/assets/icons/down-arrow.png'}
-                alt="Down Arrow"
-                width={32}
-                height={32}
-              />
+              {alphabetFilter === 0 ? (
+                <Image
+                  onClick={handleAlphabeticOrder}
+                  src={'/assets/icons/line.png'}
+                  alt="Down Arrow"
+                  width={32}
+                  height={32}
+                />
+              ) : alphabetFilter === 1 ? (
+                <Image
+                  onClick={handleAlphabeticOrder}
+                  src={'/assets/icons/down-arrow.png'}
+                  alt="Down Arrow"
+                  width={32}
+                  height={32}
+                />
+              ) : (
+                <Image
+                  onClick={handleAlphabeticOrder}
+                  src={'/assets/icons/down-arrow.png'}
+                  alt="Down Arrow"
+                  width={32}
+                  height={32}
+                  className="rotate-180"
+                />
+              )}
             </div>
           </div>
 
