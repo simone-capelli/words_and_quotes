@@ -1,9 +1,11 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const Home = () => {
+  const router = useRouter();
   const [totalUsers, setTotalUsers] = useState(0);
 
   useEffect(() => {
@@ -53,14 +55,19 @@ const Home = () => {
         <p className="">ogni giorno</p>
       </div>
 
-      <div className="mt-6 flex flex-row justify-center items-center gap-2.5 px-4 py-3 rounded-[5px] bg-black">
+      <div
+        className="mt-6 flex flex-row justify-center items-center gap-2.5 px-4 py-3 rounded-[5px] bg-black cursor-pointer"
+        onClick={() => {
+          router.push('/words');
+        }}
+      >
         <Image
           src="/assets/homepage/shooting-star.png"
           alt="stars_CTA"
           width={24}
           height={24}
         />
-        <p className="text-white font-medium">Inizia ora!</p>
+        <p className="text-white font-medium cursor-pointer">Inizia ora!</p>
       </div>
 
       <Image
@@ -71,7 +78,7 @@ const Home = () => {
         height={117}
       />
 
-      <div className="mt-8 flex flex-row justify-center items-center gap-2.5 px-4 py-3 rounded-[5px] bg-white">
+      <div className="mt-8 flex flex-row justify-center items-center gap-2.5 px-4 py-3 rounded-[5px] bg-white cursor-pointer">
         <p className="text-black font-medium">Scopri di più</p>
         <Image
           src="/assets/homepage/world.png"
