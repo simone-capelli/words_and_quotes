@@ -122,7 +122,7 @@ export const Modal = ({
               height={word.isLearned ? 24 : 28}
               className={isEditing ? 'cursor-pointer' : ''}
             />
-            <p className="header-title">{word.word}</p>
+            <p className="flex flex-row header-title capitalize">{word.word}</p>
 
             <Image
               onClick={isEditing ? handleChangeTagColor : () => {}}

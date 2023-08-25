@@ -9,7 +9,7 @@
 /* Header & styles*/
 
 .header-title {
-  @apply flex flex-row text-black text-center text-[32px] not-italic font-normal leading-[normal] capitalize;
+  @apply text-black text-center text-[32px] not-italic font-normal leading-[normal];
   font-family: Outfit;
 }
 .outfit {

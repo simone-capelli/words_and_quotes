@@ -26,7 +26,10 @@ const Nav = () => {
         />
       </SignedIn> */}
 
-      <div className="header-title" onClick={() => router.push('/')}>
+      <div
+        className="flex flex-row header-title capitalize"
+        onClick={() => router.push('/')}
+      >
         <p className="text-[#268C41]">Words</p>
         <p className="px-2">&</p>
         <p className="text-[#0085FF]">Quotes</p>
