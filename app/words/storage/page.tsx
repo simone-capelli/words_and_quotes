@@ -7,6 +7,8 @@ import { Word } from '@customTypes/interfaces';
 import { useUser } from '@clerk/nextjs';
 
 const WordsList = ({ words }: { words: Word[] }) => {
+  if (!useUser().user) return (window.location.href = '/');
+
   return (
     <div className="pt-16 w-full flex flex-col gap-2">
       {words.map((word: Word) => (
