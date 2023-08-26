@@ -3,8 +3,19 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
+import {
+  WhatsappShareButton,
+  WhatsappIcon,
+  TelegramShareButton,
+  TelegramIcon,
+  FacebookMessengerShareButton,
+  FacebookMessengerIcon,
+} from 'next-share';
 const Home = () => {
+  const WEQ_URL = '';
+  const WEQ_MSG = 'Words&Quotes è qui! Salva le tue parole con un click.';
+  const INSTA_PROFILE = 'https://www.instagram.com/wordsequotes/';
+
   const router = useRouter();
   const [totalUsers, setTotalUsers] = useState(0);
 
@@ -19,10 +30,40 @@ const Home = () => {
     };
     fetchTotalUsers();
   });
+
+  const [showShareBar, setShowShareBar] = useState(false);
+
+  const ShareBar = () => {
+    return (
+      <div className="share-bar">
+        <WhatsappShareButton url={WEQ_URL} title={WEQ_MSG}>
+          <WhatsappIcon size={32} round />
+        </WhatsappShareButton>
+
+        <TelegramShareButton url={WEQ_URL} title={WEQ_MSG}>
+          <TelegramIcon size={32} round />
+        </TelegramShareButton>
+
+        <Image
+          onClick={() => {
+            window.location.href = INSTA_PROFILE;
+          }}
+          src="/assets/homepage/instagram.png"
+          alt="Instagram"
+          width={34}
+          height={34}
+        />
+      </div>
+    );
+  };
+
+  const handleShare = () => {
+    setShowShareBar(!showShareBar);
+  };
   return (
     <section className="w-full flex-center flex-col pt-14 ">
       <br />
-      <div className="gap-4 w-full flex flex-row justify-between items-center">
+      <div className="gap-2 w-full flex flex-row justify-between items-center">
         <Image
           src="/assets/homepage/users.png"
           alt="users"
@@ -38,6 +79,15 @@ const Home = () => {
           ></div>
         </div>
         {totalUsers}/500
+        <Image
+          onClick={handleShare}
+          src="/assets/homepage/share.png"
+          alt="share"
+          width={25}
+          height={25}
+          className={showShareBar ? 'rotate-[135deg]' : 'rotate-[42deg]'}
+        />
+        {showShareBar && <ShareBar />}
       </div>
 
       <div className="pt-10 header-title gap-4 flex flex-col uppercase text-black items-center">
