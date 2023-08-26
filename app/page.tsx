@@ -108,7 +108,7 @@ const Home = () => {
       <div
         className="mt-6 flex flex-row justify-center items-center gap-2.5 px-4 py-3 rounded-[5px] bg-black cursor-pointer"
         onClick={() => {
-          router.push('/words');
+          router.push('/sign-up');
         }}
       >
         <Image
