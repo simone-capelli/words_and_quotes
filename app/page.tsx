@@ -2,12 +2,12 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+
 const Home = () => {
   const router = useRouter();
-  const [totalUsers, setTotalUsers] = useState(0);
+  // const [totalUsers, setTotalUsers] = useState(0);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const fetchTotalUsers = async () => {
       const response = await fetch('/api/users', {
         method: 'GET',
@@ -17,7 +17,97 @@ const Home = () => {
       setTotalUsers(data);
     };
     fetchTotalUsers();
-  });
+  }); */
+
+  /* const ContactForm = () => {
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    const sendMail = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          surname,
+          email,
+          message,
+        }),
+      });
+      console.log(await response.json());
+    };
+
+    return (
+      <form className="w-full flex flex-col" onSubmit={sendMail}>
+        <div className="w-full flex flex-row gap-4 flex-center">
+          <div className="w-1/2 flex flex-col">
+            <p className="mb-2 w-full mt-4 title text-[18px]">Nome</p>
+            <input
+              placeholder="Il tuo nome"
+              className="p-2 w-full rounded-lg border-2 border-solid border-[#D9D9D9]"
+              type="text"
+              id="name"
+              value={name}
+              maxLength={25}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="w-1/2 flex flex-col">
+            <p className="mb-2 w-full mt-4 title text-[18px]">Cognome</p>
+            <input
+              placeholder="Il tuo cognome"
+              className="p-2 w-full rounded-lg border-2 border-solid border-[#D9D9D9]"
+              type="email"
+              id="email"
+              value={surname}
+              maxLength={50}
+              onChange={(e) => setSurname(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="w-full flex flex-col">
+          <p className="mb-2 w-full mt-4 title text-[18px]">Email</p>
+          <input
+            placeholder="nome.cognome@gmail.com"
+            className="p-2 w-full rounded-lg border-2 border-solid border-[#D9D9D9]"
+            type="email"
+            id="email"
+            value={email}
+            maxLength={50}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <p className="mb-2 w-full mt-4 title text-[18px]">Messaggio</p>
+          <textarea
+            placeholder="Scrivi qui il tuo messaggio..."
+            className="w-full h-[120px] p-2 rounded-lg border-2 border-solid border-[#D9D9D9]"
+            id="message"
+            value={message}
+            maxLength={500}
+            onChange={(e) => setMessage(e.target.value)}
+          ></textarea>
+        </div>
+
+        <div
+          onClick={() => router.push('/words')}
+          className="mt-4 cta-btn bg-[#268C41]"
+        >
+          <button className="cta-title text-[30px]" type="submit">
+            Invia
+          </button>
+        </div>
+      </form>
+    );
+  }; */
 
   return (
     <section id="home" className="w-full flex-col mt-12">
@@ -141,12 +231,12 @@ const Home = () => {
 
         {/* Beta Testing */}
         <p className="mt-12 green-section">Version</p>
-        <p className="mt-4 title text-[22px]">
-          &lt;BetaTesting /&gt; <br />
+        <p className="mt-4 title text-[22px]">Beta-Testing</p>
+        <p className="mt-2 title text-[22px]">
           Il tuo contributo è importante!
         </p>
 
-        <div className="mt-2 cta-btn bg-[#272727]">
+        <div className="mt-4 cta-btn bg-[#272727]">
           <button className="flex flex-row cta-title text-[30px] gap-3 items-center">
             <Image
               src="/assets/homepage/telegram.png"
@@ -182,11 +272,32 @@ const Home = () => {
           La conoscenza è come una chiave che apre le porte
           dell&apos;opportunità.
         </p>
-        <p className="mt-3 description">
+
+        <p className="mt-4 description">
           Ciao! Sono uno sviluppatore web freelance specializzato in React e
           Next.js.
         </p>
-        <p className="mt-3 description">
+
+        <div className="flex_row mt-6 gap-10">
+          <a href="https://www.linkedin.com/in/simone-capelli-373a49278/">
+            <Image
+              src="/assets/homepage/linkedin.png"
+              alt="Linkedin"
+              width={30}
+              height={30}
+            />
+          </a>
+          <a href="https://github.com/simone-capelli">
+            <Image
+              src="/assets/homepage/github.png"
+              alt="Github"
+              width={30}
+              height={30}
+            />
+          </a>
+        </div>
+
+        <p className="mt-6 description">
           Sono appassionato di psicologia e crescita personale, e ho deciso di
           combinare queste due passioni con la mia esperienza nello sviluppo di
           app.
@@ -196,6 +307,8 @@ const Home = () => {
           possibilità insieme. Non esitare a contattarmi, una conversazione può
           aprire porte inaspettate!
         </p>
+
+        {/* <ContactForm /> */}
       </div>
 
       <br />
