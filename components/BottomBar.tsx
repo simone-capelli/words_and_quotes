@@ -12,6 +12,7 @@ const BottomBar = () => {
     <section className="bottombar">
       <div className="bottombar_container">
         <Image
+          onClick={() => router.push('/words')}
           src="/assets/bottombar/words.png"
           alt="words"
           width={28}
@@ -25,6 +26,7 @@ const BottomBar = () => {
           height={40}
         />
         <Image
+          onClick={() => router.push('/words/storage')}
           src="/assets/bottombar/storage.png"
           alt="storage"
           width={30}

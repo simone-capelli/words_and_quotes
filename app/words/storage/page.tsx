@@ -92,9 +92,6 @@ const Page = () => {
 
   return (
     <section className="w-full pt-12 text-[#000000]">
-      <h1 className="fixed z-20 w-full right-1 pt-1 flex-center text-medium bg-slate-50">
-        Storage
-      </h1>
       {loading && (
         <span className="loader ml-[19%] md:ml-[40%] sm:ml-[35%] md:mt-[15%] mt-[20%]">
           L &nbsp; ading
