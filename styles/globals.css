@@ -10,11 +10,33 @@
 .flex_row {
   @apply flex flex-row items-center;
 }
-.title {
+.header_title {
   @apply text-[30px] font-normal;
 }
 .striked {
   text-decoration: line-through;
+}
+
+.title {
+  @apply font-inter font-bold;
+}
+
+.green-section {
+  @apply text-[#268C41] text-[15px] font-medium font-inter flex-center;
+}
+.black-section {
+  @apply text-[#000] text-[15px] font-medium font-inter flex-center;
+}
+
+.description {
+  @apply text-[16px] text-gray-500 font-normal;
+}
+
+.cta-btn {
+  @apply w-full py-3 flex justify-center items-center rounded-lg;
+}
+.cta-title {
+  @apply font-semibold text-[20px] text-white;
 }
 
 .menu {

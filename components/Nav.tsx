@@ -15,7 +15,7 @@ const Nav = () => {
   return (
     <nav className="navbar">
       <div className="navbar_container">
-        <div className="title outfit flex_row gap-1">
+        <div className="header_title outfit flex_row gap-1">
           <p className="text-[#268C41]">Words</p>
           <div className="flex_row striked">
             <p>&</p>
