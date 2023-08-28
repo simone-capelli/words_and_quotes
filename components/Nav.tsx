@@ -1,15 +1,57 @@
 'use client';
 
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { navLinks } from '@constants';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const Nav = () => {
+  const [toggleMenu, setToggleMenu] = useState(false);
+
   const router = useRouter();
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 z-30 flex justify-between items-center w-full bg-slate-50 pt-2 px-5 pb-2">
+    <nav className="navbar">
+      <div className="navbar_container">
+        <div className="title outfit flex_row gap-1">
+          <p className="text-[#268C41]">Words</p>
+          <div className="flex_row striked">
+            <p>&</p>
+            <p>Quotes</p>
+          </div>
+        </div>
+
+        <Image
+          src="/assets/nav/menu.png"
+          alt="menu"
+          width={20}
+          height={20}
+          onClick={() => setToggleMenu((prev: boolean) => !prev)}
+        />
+        {toggleMenu && (
+          <div
+            id="menu"
+            className="menu flex px-8 py-4 mr-2 bg-black
+         "
+          >
+            <ul className="list-none flex flex-col justify-end items-center gap-1">
+              {navLinks.map((nav, index) => (
+                <li
+                  key={nav.id}
+                  className={`font-poppins font-normal 
+            cursor-pointer text-[16px]
+            ${index === navLinks.length - 1 ? 'mr-0' : 'mb-4'}
+            text-white`}
+                >
+                  <a href={`#${nav.id}`}>{nav.title}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
       {/* <div
         className="flex flex-row header-title capitalize cursor-pointer"
         onClick={() => router.push('/')}

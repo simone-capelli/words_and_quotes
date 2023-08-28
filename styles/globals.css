@@ -6,6 +6,29 @@
 @tailwind utilities;
 
 /* Word And Quotes Styles */
+
+.flex_row {
+  @apply flex flex-row items-center;
+}
+.title {
+  @apply text-[30px] font-normal;
+}
+.striked {
+  text-decoration: line-through;
+}
+
+.menu {
+  @apply absolute top-12 right-0 rounded-xl;
+  animation: slideIn 0.7s ease-in-out;
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(110%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 /* Header & styles*/
 
 .header-title {
@@ -60,7 +83,14 @@
   background-color: #ffffff;
 }
 
-/* Bottom bar */
+/* Bars */
+.navbar {
+  @apply fixed top-0 z-30 w-full bg-slate-50;
+}
+.navbar_container {
+  @apply flex items-center justify-between py-2 px-5;
+}
+
 .bottombar {
   @apply fixed bottom-0 z-10 w-full p-4 backdrop-blur-lg;
   background: rgb(4, 4, 24);
