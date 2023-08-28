@@ -11,7 +11,24 @@ const BottomBar = () => {
   return (
     <section className="bottombar">
       <div className="bottombar_container">
-        {/* Quando mi trovo sulla pagina corrente l'icona diventa verde, altrimenti bianca */}
+        <Image
+          src="/assets/bottombar/words.png"
+          alt="words"
+          width={28}
+          height={28}
+        />
+        <Image
+          src="/assets/bottombar/home-select.png"
+          alt="home"
+          width={40}
+          height={40}
+        />
+        <Image
+          src="/assets/bottombar/storage.png"
+          alt="storage"
+          width={30}
+          height={30}
+        />
       </div>
     </section>
   );

@@ -92,12 +92,12 @@
 }
 
 .bottombar {
-  @apply fixed bottom-0 z-10 w-full p-4 backdrop-blur-lg;
+  @apply fixed bottom-2 z-10 w-[94%] py-4 backdrop-blur-lg rounded-[42px];
   background: rgb(4, 4, 24);
 }
 
 .bottombar_container {
-  @apply flex items-center justify-between mx-4 gap-3 md:gap-5;
+  @apply flex items-center justify-between mx-8 gap-3 md:gap-5;
 }
 
 /* Loaders */
