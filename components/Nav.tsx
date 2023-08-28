@@ -45,10 +45,10 @@ const Nav = () => {
               {navLinks.map((nav, index) => (
                 <li
                   key={nav.id}
-                  className={`font-poppins font-normal 
-            cursor-pointer text-[16px]
+                  className={`outfit font-normal 
+            cursor-pointer text-[16px] text-white opacity-90
             ${index === navLinks.length - 1 ? 'mr-0' : 'mb-4'}
-            text-white`}
+            `}
                 >
                   <a href={`#${nav.id}`}>{nav.title}</a>
                 </li>

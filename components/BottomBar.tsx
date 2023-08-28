@@ -18,6 +18,7 @@ const BottomBar = () => {
           height={28}
         />
         <Image
+          onClick={() => router.push('/')}
           src="/assets/bottombar/home-select.png"
           alt="home"
           width={40}

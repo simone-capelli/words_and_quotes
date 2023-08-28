@@ -172,7 +172,8 @@ const Home = () => {
 
         <p className="mt-12 green-section">Contacts</p>
         <p className="mt-4 title text-[22px]">
-          La conoscenza è come una chiave che apre le porte dell'opportunità.
+          La conoscenza è come una chiave che apre le porte
+          dell&apos;opportunità.
         </p>
         <p className="mt-3 description">
           Ciao! Sono uno sviluppatore web freelance specializzato in React e
