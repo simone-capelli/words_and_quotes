@@ -15,12 +15,12 @@ const Nav = () => {
   return (
     <nav className="navbar">
       <div className="navbar_container">
-        <div className="header_title outfit flex_row gap-1">
-          <p className="text-[#268C41]">Words</p>
-          <div className="flex_row striked">
-            <p>&</p>
-            <p>Quotes</p>
-          </div>
+        <div className="header_title outfit flex_row gap-2">
+          <p className="text-[#268C41] mr-1">Words</p>
+          <p>&</p>
+          <a className="opacity-20" href="#quotes">
+            Quotes
+          </a>
         </div>
 
         {pathname === '/' ? (

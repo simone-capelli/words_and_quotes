@@ -144,7 +144,7 @@ const Home = () => {
           aggiornato sulle prossime versioni.
         </p>
 
-        <div className="mt-5 cta-btn bg-[#272727]">
+        <div id="quotes" className="mt-5 cta-btn bg-[#272727]">
           <button className="flex flex-row cta-title text-[30px] gap-3 items-center">
             <Image
               src="/assets/homepage/telegram.png"
