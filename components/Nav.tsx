@@ -10,25 +10,7 @@ const Nav = () => {
 
   return (
     <nav className="fixed top-0 z-30 flex justify-between items-center w-full bg-slate-50 pt-2 px-5 pb-2">
-      {/*  <SignedOut>
-        <Image
-          src="/assets/nav/code.png"
-          alt="Questions"
-          width={30}
-          height={30}
-        />
-      </SignedOut> */}
-
-      {/* <SignedIn>
-        <Image
-          src="/assets/nav/doubts-button.png"
-          alt="Questions"
-          width={30}
-          height={30}
-        />
-      </SignedIn> */}
-
-      <div
+      {/* <div
         className="flex flex-row header-title capitalize cursor-pointer"
         onClick={() => router.push('/')}
       >
@@ -49,7 +31,7 @@ const Nav = () => {
             </button>
           </SignInButton>
         </SignedOut>
-      )}
+      )} */}
     </nav>
   );
 };
