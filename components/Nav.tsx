@@ -23,13 +23,18 @@ const Nav = () => {
           </div>
         </div>
 
-        <Image
-          src="/assets/nav/menu.png"
-          alt="menu"
-          width={20}
-          height={20}
-          onClick={() => setToggleMenu((prev: boolean) => !prev)}
-        />
+        {pathname === '/' ? (
+          <Image
+            src="/assets/nav/menu.png"
+            alt="menu"
+            width={20}
+            height={20}
+            onClick={() => setToggleMenu((prev: boolean) => !prev)}
+          />
+        ) : (
+          <UserButton afterSignOutUrl="/" />
+        )}
+
         {toggleMenu && (
           <div
             id="menu"
