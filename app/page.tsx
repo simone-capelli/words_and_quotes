@@ -37,11 +37,17 @@ const Home = () => {
 
       <div className="flex flex-col flex-center text-center">
         {/* CTA */}
-        <div className="mt-8 cta-btn bg-[#268C41]">
+        <div
+          onClick={() => router.push('/words')}
+          className="mt-8 cta-btn bg-[#268C41]"
+        >
           <button className="cta-title text-[30px]">Inizia ora</button>
         </div>
 
-        <div className="mt-3 cta-btn bg-[#000]">
+        <a
+          href="https://t.me/Words_and_Quotes"
+          className="mt-3 cta-btn bg-[#000]"
+        >
           <button className="flex flex-row cta-title text-[30px] gap-3 items-center">
             <Image
               src="/assets/homepage/telegram.png"
@@ -49,9 +55,9 @@ const Home = () => {
               width={20}
               height={20}
             />{' '}
-            Telegram
+            Entra su Telegram
           </button>
-        </div>
+        </a>
 
         <Image
           id="vision"
@@ -139,12 +145,8 @@ const Home = () => {
           &lt;BetaTesting /&gt; <br />
           Il tuo contributo è importante!
         </p>
-        <p className="mt-2 description">
-          Lascia un feedback sul canale telegram e unisciti per rimanere sempre
-          aggiornato sulle prossime versioni.
-        </p>
 
-        <div id="quotes" className="mt-5 cta-btn bg-[#272727]">
+        <div className="mt-2 cta-btn bg-[#272727]">
           <button className="flex flex-row cta-title text-[30px] gap-3 items-center">
             <Image
               src="/assets/homepage/telegram.png"
@@ -152,9 +154,14 @@ const Home = () => {
               width={20}
               height={20}
             />{' '}
-            Unisciti
+            Lascia il tuo feedback
           </button>
         </div>
+
+        <p id="quotes" className="mt-6 description">
+          Lascia un feedback sul canale telegram e unisciti per rimanere sempre
+          aggiornato sulle prossime versioni.
+        </p>
 
         <p className="mt-12 title text-[22px]">E le Quotes?</p>
         <p className="bg-gray-100 border-l-4 border-gray-500 italic my-4 pl-4 py-2">
